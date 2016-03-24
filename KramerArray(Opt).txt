@@ -1,0 +1,48 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+int zapCopr(int c[3][3], int a[3][3], int b[3], int o) 
+{
+	for (int i = 0; i < 3; ++i)
+	{
+		for (int j = 0; j < 3; ++j)
+			c[i][j] = a[i][j];
+	}
+	for (int i = 0; i < 3; ++i)
+		c[i][o] = b[i];
+	int opr= c[0][0] * c[1][1] * c[2][2] + c[0][1] * c[1][2] * c[2][0] + c[1][0] * c[2][1] * c[0][2] - c[0][2] * c[1][1] * c[2][0] - c[2][1] * c[1][2] * c[0][0] - c[0][1] * c[1][0] * c[2][2];
+	return opr;
+}
+int main()
+{
+	int a[3][3], c[3][3];
+	int b[3];
+	int opr1, opr2, opr3, opr4;
+	int x1, x2, x3;
+	for (int i = 0; i < 3; ++i)
+	{
+		for (int j = 0; j < 3; ++j)
+			cin >> a[i][j];
+	}
+	for (int i = 0; i < 3; ++i)
+	{
+		for (int j = 0; j < 3; ++j)
+			cout << a[i][j] << " ";
+		cout << endl;
+	}
+	cout << "Insert free numbers \n";
+	for (int i = 0; i < 3; ++i)
+		cin >> b[i];
+	opr1 = a[0][0] * a[1][1] * a[2][2] + a[0][1] * a[1][2] * a[2][0] + a[1][0] * a[2][1] * a[0][2] - a[0][2] * a[1][1] * a[2][0] - a[2][1] * a[1][2] * a[0][0] - a[0][1] * a[1][0] * a[2][2];
+	opr2 = zapCopr(c, a, b, 0);
+	opr3 = zapCopr(c, a, b, 1);
+	opr4 = zapCopr(c, a, b, 2);
+	x1 = opr2 / opr1;
+	x2 = opr3 / opr1;
+	x3 = opr4 / opr1;
+	cout << x1 << " " << x2 << " " << x3 << " ";
+	system("pause");
+	return 0;
+}
